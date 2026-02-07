@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Assignment
 
-## Getting Started
+You are designing an ecommerce store. Clients can add items to their cart and checkout to successfully place an order.  The store has a discount system that rewards customers.
 
-First, run the development server:
+We would like you to design and implement APIs for adding items to cart and checkout functionality. The checkout API would validate if the discount code is valid before giving the discount. 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Discount System works in the following ways - Every Every *n*th order gets a coupon code for x% discount. Discount codes can be applied at checkout. 
+
+The store also has two admin API's:
+1. Generate a discount code if the condition above is satisfied.
+2. Lists count of items purchased, revenue, discount codes and total discounts given. 
+
+You can build this with a technology stack that you are comfortable with. You would push the code to your github repo and share the link once its complete. We would like to see your commits that show progression and thought process as to how you are completing the exercise. 
+
+## What We're Looking For
+
+We want to see **how you think**, not just that you can produce working code. You are encouraged to use AI tools to help you code faster, but you must demonstrate understanding of your choices.
+
+### Required Deliverables
+
+#### 1. Working Code
+- Functional APIs (backend required, frontend is a plus)
+- Code quality
+- In-memory store is fine (no database needed)
+- Unit tests for core business logic
+- Code comments, readme docs
+
+#### 2. DECISIONS.md (Required)
+Create a `DECISIONS.md` file documenting **at least 5 design decisions** you made. For each decision:
+
+```markdown
+## Decision: [Title]
+
+**Context:** What problem were you solving?
+
+**Options Considered:**
+- Option A: [description]
+- Option B: [description]
+
+**Choice:** [What you chose]
+
+**Why:** [Your reasoning - trade-offs, constraints, future considerations]
 ```
+## Submission
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Push to your GitHub repo
+2. Ensure repo contains:
+   - Source code
+   - `README.md` with setup instructions
+   - `DECISIONS.md` with your design decisions
+   - Tests
+3. Share the repo link
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## FAQ:
+**Q: Can I use AI tools like GitHub Copilot or ChatGPT?**  
+A: Yes! But you must understand and be able to explain every line of code. We will ask about your implementation in the follow-up interview.
 
-## Learn More
+**Q: Do I need a database?**  
+A: No, in-memory storage is fine.
 
-To learn more about Next.js, take a look at the following resources:
+**Q: Frontend required?**  
+A: Backend is required. Frontend is a plus but not required. If no frontend, provide Postman collection or similar.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Q: What tech stack should I use?**  
+A: Whatever you're most comfortable with. We primarily work with TypeScript/Node.js, but use what lets you demonstrate your skills best.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+All the best!
