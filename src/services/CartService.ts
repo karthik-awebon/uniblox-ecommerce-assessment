@@ -13,7 +13,6 @@ export class CartService {
         const cartId = userId; // Simple mapping for this assessment
         let cart = store.getCart(cartId);
 
-        // 1. Create Cart if it doesn't exist
         if (!cart) {
             cart = {
                 id: cartId,
@@ -22,7 +21,6 @@ export class CartService {
             };
         }
 
-        // 2. Update Item Logic
         const existingItemIndex = cart.items.findIndex((i) => i.productId === productId);
 
         if (existingItemIndex > -1 && cart.items[existingItemIndex]) {
@@ -37,7 +35,6 @@ export class CartService {
             });
         }
 
-        // 3. Persist State
         store.saveCart(cart);
         return cart;
     }
@@ -56,12 +53,10 @@ export class CartService {
     async checkout(userId: string, discountCode?: string): Promise<{ order: Order; generatedCoupon?: string | undefined }> {
         const cart = this.getCart(userId);
 
-        // Validation: Empty Cart
         if (!cart || cart.items.length === 0) {
             throw new Error('Cart not found or empty');
         }
 
-        // 1. Calculate Subtotal
         const totalAmount = cart.items.reduce(
             (sum, item) => sum + item.price * item.quantity,
             0
@@ -69,7 +64,6 @@ export class CartService {
 
         let discountPercentage = 0;
 
-        // 2. Validate Discount Code (if provided)
         if (discountCode) {
             // This will throw an error if the code is invalid or used
             discountPercentage = await discountService.validateDiscountCode(discountCode);
@@ -78,15 +72,13 @@ export class CartService {
             store.markDiscountAsUsed(discountCode);
         }
 
-        // 3. Calculate Financials
         const discountAmount = (totalAmount * discountPercentage) / 100;
         const finalAmount = totalAmount - discountAmount;
 
-        // 4. Create the Order Object
         const newOrder: Order = {
             id: `ORDER-${Date.now()}`,
             userId,
-            items: [...cart.items], // Clone items to prevent reference issues
+            items: [...cart.items],
             totalAmount,
             discountCode,
             discountAmount,
@@ -94,11 +86,9 @@ export class CartService {
             timestamp: new Date(),
         };
 
-        // 5. Persist Order & Check for "Nth Order" Reward
         // * The store handles the atomic counter increment *
         const { order: savedOrder, generatedCode } = store.createOrder(newOrder);
 
-        // 6. Clear the User's Cart (Transaction Complete)
         store.saveCart({ ...cart, items: [] });
 
         return {
