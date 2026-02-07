@@ -2,10 +2,8 @@ import { Cart, Order, DiscountCode, InMemoryStore } from '@/types';
 import { NTH_ORDER_THRESHOLD, DISCOUNT_PERCENTAGE } from '@/constants';
 
 class Store {
-    // 1. Private Static Instance (Singleton Pattern)
     private static instance: Store;
 
-    // 2. Private Data Storage
     private data: InMemoryStore = {
         carts: {},
         orders: [],
@@ -46,11 +44,9 @@ class Store {
      * This mimics a "Transaction" in a real DB.
      */
     public createOrder(order: Order): { order: Order; generatedCode?: string | undefined } {
-        // 1. Save the order
         this.data.orders.push(order);
         this.data.orderCount++;
 
-        // 2. Check if this is the n-th order
         let generatedCode: string | undefined;
 
         if (this.data.orderCount % this.data.n === 0) {
