@@ -6,7 +6,7 @@ export interface Order {
     items: CartItem[];
 
     totalAmount: number;
-    discountCode?: string;
+    discountCode?: string | undefined;
     discountAmount: number;
     finalAmount: number;
 
