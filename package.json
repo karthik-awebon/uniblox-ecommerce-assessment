@@ -10,7 +10,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "type-check": "tsc --noEmit",
-    "prepare": "husky"
+    "prepare": "husky",
+    "coverage": "jest --coverage"
   },
   "dependencies": {
     "next": "14.2.35",
@@ -28,6 +29,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "dotenv": "^17.2.4",
     "eslint": "^8",
     "eslint-config-next": "14.2.35",
     "eslint-plugin-sonarjs": "^3.0.6",

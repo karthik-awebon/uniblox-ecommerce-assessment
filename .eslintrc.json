@@ -1,16 +1,14 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript", "plugin:sonarjs/recommended"],
-  "plugins": [
-    "sonarjs"
-  ],
+  "extends": ["next/core-web-vitals", "next/typescript"],
+  "plugins": ["sonarjs"],
   "rules": {
     "sonarjs/cognitive-complexity": ["error", 15],
-    "sonarjs/no-duplicate-string": ["warn", 5],
+    "sonarjs/no-duplicate-string": ["warn", { "threshold": 5 }],
     "no-console": ["warn", { "allow": ["warn", "error"] }]
   },
   "overrides": [
     {
-      /* * ARCHITECTURE GUARDRAIL: 
+      /* * ARCHITECTURE GUARDRAIL:
        * Prevents UI components from talking directly to the Database/Infrastructure.
        * This forces developers to use the 'Service Layer'.
        */
@@ -21,7 +19,13 @@
           {
             "patterns": [
               {
-                "group": ["@/lib/db", "@/lib/prisma", "@/infrastructure/*", "mongoose", "prisma"],
+                "group": [
+                  "@/lib/db",
+                  "@/lib/prisma",
+                  "@/infrastructure/*",
+                  "mongoose",
+                  "prisma"
+                ],
                 "message": "ARCHITECTURAL VIOLATION: UI components cannot import database modules directly. You must fetch data through the Service Layer (@/services)."
               }
             ]
