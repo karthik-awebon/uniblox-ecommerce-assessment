@@ -1,3 +1,4 @@
+import { AppError } from '@/lib/utils/AppError';
 import { store } from '@/lib/db/store';
 import { Cart, Order } from '@/types';
 import { discountService } from './DiscountService';
@@ -54,7 +55,7 @@ export class CartService {
         const cart = this.getCart(userId);
 
         if (!cart || cart.items.length === 0) {
-            throw new Error('Cart not found or empty');
+            throw new AppError('Cart not found or empty', 404);
         }
 
         const totalAmount = cart.items.reduce(

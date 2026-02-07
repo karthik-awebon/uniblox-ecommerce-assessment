@@ -1,3 +1,4 @@
+import { AppError } from '@/lib/utils/AppError';
 import { store } from '@/lib/db/store'; // Access the singleton
 import { NTH_ORDER_THRESHOLD } from '@/constants';
 
@@ -14,6 +15,7 @@ export class DiscountService {
         // Logic: If total orders is exactly divisible by N, it's a "winning" order.
         // We check > 0 to ensure the 0th order doesn't trigger it.
         if (stats.totalOrders > 0 && stats.totalOrders % NTH_ORDER_THRESHOLD === 0) {
+            console.log(`Order ${orderId} triggered a discount.`);
             return `DISCOUNT-${Date.now()}`;
         }
 
@@ -28,11 +30,11 @@ export class DiscountService {
         const discount = store.getDiscountCode(code);
 
         if (!discount) {
-            throw new Error('Invalid discount code');
+            throw new AppError('Invalid discount code', 400);
         }
 
         if (discount.isUsed) {
-            throw new Error('Discount code has already been used');
+            throw new AppError('Discount code has already been used', 400);
         }
 
         return discount.percentage;
