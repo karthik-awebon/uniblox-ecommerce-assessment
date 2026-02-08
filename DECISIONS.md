@@ -41,3 +41,18 @@ The requirement specifies "no database needed," but Next.js App Router runs in a
 - **Structure:** It mimics a real database connection pattern.
 - **Safety:** It prevents multiple instances of the store from being created accidentally during hot-reloads (in development) or specific server runtimes.
 - **Encapsulation:** It prevents direct mutation of the data array from random parts of the app; data can only be modified via defined methods (e.g., store.addOrder()).
+
+## 3. Automated vs. Manual Discount Generation
+
+**Context:**
+The requirements mentioned an Admin API to "Generate a discount code if the condition is satisfied." However, the business logic dictates that "Every nth order gets a coupon code."
+
+**Options Considered:**
+
+- **Option A (Literal Interpretation):** Create a `POST /api/admin/generate-discount` endpoint. The Admin must manually call this to check the order count and generate a code.
+- **Option B (Event-Driven/Automated):** Move the generation logic into the `Checkout`. When the Nth order is placed, the system _automatically_ generates and returns the code in the response.
+
+**Choice:** Option B (Automated)
+
+**Why:** 1. **User Experience:** Customers expect instant rewards. Waiting for an admin action to receive a coupon is a poor experience. 2. **Atomicity:** Generating the code within the Checkout transaction ensures that the "Nth Order" state and the "Reward Issued" state remain perfectly synchronized. 3. **Efficiency:** It removes the need for polling or manual intervention.
+_Note: The logic to generate the code still exists in the `Store`, but it is triggered by the `OrderCreated` event rather than an HTTP Request._
