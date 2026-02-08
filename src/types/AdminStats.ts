@@ -1,6 +1,6 @@
 export interface AdminStats {
-    totalItemsPurchased: number;
-    totalRevenue: number;
-    totalDiscountsGiven: number;
-    generatedDiscountCodes: string[];
+  totalItemsPurchased: number;
+  totalRevenue: number;
+  totalDiscountsGiven: number;
+  totalDiscountCodes: number;
 }
