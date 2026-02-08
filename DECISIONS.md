@@ -54,5 +54,8 @@ The requirements mentioned an Admin API to "Generate a discount code if the cond
 
 **Choice:** Option B (Automated)
 
-**Why:** 1. **User Experience:** Customers expect instant rewards. Waiting for an admin action to receive a coupon is a poor experience. 2. **Atomicity:** Generating the code within the Checkout transaction ensures that the "Nth Order" state and the "Reward Issued" state remain perfectly synchronized. 3. **Efficiency:** It removes the need for polling or manual intervention.
-_Note: The logic to generate the code still exists in the `Store`, but it is triggered by the `OrderCreated` event rather than an HTTP Request._
+**Why:**
+
+1. **User Experience:** Customers expect instant rewards. Waiting for an admin action to receive a coupon is a poor experience.
+2. **Atomicity:** Generating the code within the Checkout transaction ensures that the "Nth Order" state and the "Reward Issued" state remain perfectly synchronized.
+3. **Efficiency:** It removes the need for polling or manual intervention.
