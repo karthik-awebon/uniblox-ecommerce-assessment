@@ -86,6 +86,34 @@ npm test
 npm run coverage
 ```
 
+## 📮 Postman Collection
+
+To make testing easier, a comprehensive Postman collection is included in this repository.
+
+**Location:** [`docs/uniblox_api.postman_collection.json`](./docs/uniblox_api.postman_collection.json)
+
+### How to Import & Use
+
+1.  **Open Postman** and click the **Import** button (top left).
+2.  Drag and drop the file `docs/uniblox_api.postman_collection.json`.
+3.  The collection **"Uniblox E-commerce"** will appear in your sidebar.
+
+### ⚙️ Configuration
+
+The collection comes with pre-configured variables so you don't need to manually change URLs or Headers.
+
+| Variable      | Default Value           | Description                                        |
+| :------------ | :---------------------- | :------------------------------------------------- |
+| `{{baseUrl}}` | `http://localhost:3000` | The API root URL.                                  |
+| `{{userId}}`  | `user-123`              | The mocked user ID sent in the `x-user-id` header. |
+
+**💡 Pro Tip:** To test the "User Switching" logic or the N-th order reward:
+
+1.  Click on the collection name **"Uniblox E-commerce"**.
+2.  Go to the **Variables** tab.
+3.  Change the `currentValue` of `userId` (e.g., to `user-456`) and save.
+4.  All subsequent requests will now simulate this new user!
+
 ## 📖 API Documentation
 
 ### 1. Add to Cart
@@ -151,7 +179,7 @@ src/
 
 ## 📝 Design Decisions
 
-Please refer to `DECISIONS.md` for a detailed explanation of architectural choices, including:
+Please refer to [`DECISIONS.md`](./DECISIONS.md) for a detailed explanation of architectural choices, including:
 
 - In-Memory Store vs. Database: Trade-offs for this assessment.
 - Automated Discount Generation: Why we moved generation logic to the Checkout flow instead of a manual Admin API.
