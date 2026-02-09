@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
+
 import { getCurrentUserId } from '@/lib/auth';
-import { cartService } from '@/services/CartService';
 import { handleApiError } from '@/lib/utils/errorHandler';
+import { cartService } from '@/services/CartService';
 
 // GET /api/cart
 export async function GET() {

@@ -1,8 +1,9 @@
 'use client';
 
-import { PRODUCTS } from '@/lib/products';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { useUser } from '@/context/UserContext';
+import { PRODUCTS } from '@/lib/products';
 
 export default function ProductList() {
   const { userId } = useUser();

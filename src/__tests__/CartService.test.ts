@@ -1,5 +1,6 @@
-import { cartService } from '../services/CartService';
 import { store } from '@/lib/db/store';
+
+import { cartService } from '../services/CartService';
 
 // Mock Constants to control the "Nth order" logic
 jest.mock('@/constants', () => ({

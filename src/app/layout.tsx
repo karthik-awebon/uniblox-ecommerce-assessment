@@ -1,10 +1,12 @@
+import './globals.css';
+
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import './globals.css';
+
 import QueryProvider from '@/components/providers/QueryProvider';
-import { cn } from '@/lib/utils/cn';
-import { UserProvider } from '@/context/UserContext';
 import UserSwitcher from '@/components/ui/UserSwitcher';
+import { UserProvider } from '@/context/UserContext';
+import { cn } from '@/lib/utils/cn';
 
 const inter = Inter({ subsets: ['latin'] });
 

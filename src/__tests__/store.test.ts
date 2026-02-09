@@ -1,6 +1,6 @@
+import { DISCOUNT_PERCENTAGE, NTH_ORDER_THRESHOLD } from '@/constants';
 import { store } from '@/lib/db/store';
 import { Cart, Order } from '@/types';
-import { NTH_ORDER_THRESHOLD, DISCOUNT_PERCENTAGE } from '@/constants';
 
 describe('Store', () => {
   beforeEach(() => {

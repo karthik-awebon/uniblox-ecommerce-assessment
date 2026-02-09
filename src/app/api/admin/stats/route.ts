@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
-import { adminService } from '../../../../services/AdminService';
+
 import { handleApiError } from '@/lib/utils/errorHandler';
+
+import { adminService } from '../../../../services/AdminService';
 
 export async function GET() {
   try {

@@ -1,6 +1,7 @@
 import { store } from '@/lib/db/store';
+import { CartItem, Order } from '@/types';
+
 import { adminService } from '../services/AdminService';
-import { Order, CartItem } from '@/types';
 
 describe('AdminService', () => {
   // 1. Setup: Clear the store before every test

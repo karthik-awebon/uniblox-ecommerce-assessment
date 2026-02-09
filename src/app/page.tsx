@@ -1,7 +1,7 @@
 import AdminStats from '@/components/admin/AdminStats';
-import ProductList from '@/components/shop/ProductList';
 // We will build this Cart component next
 import CartSummary from '@/components/shop/CartSummary';
+import ProductList from '@/components/shop/ProductList';
 
 export default function DashboardPage() {
   return (

@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
+
 import { getCurrentUserId } from '@/lib/auth';
+import { handleApiError } from '@/lib/utils/errorHandler';
 import { checkoutSchema } from '@/lib/validators/cart';
 import { cartService } from '@/services';
-import { handleApiError } from '@/lib/utils/errorHandler';
 
 export async function POST(req: NextRequest) {
   try {

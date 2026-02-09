@@ -1,11 +1,12 @@
 /**
  * @jest-environment node
  */
+import { headers } from 'next/headers';
+import { NextRequest } from 'next/server';
+
 import { POST as addToCartAPI } from '@/app/api/cart/add/route';
 import { POST as checkoutAPI } from '@/app/api/checkout/route';
 import { store } from '@/lib/db/store';
-import { NextRequest } from 'next/server';
-import { headers } from 'next/headers';
 
 // 1. Mock Configuration: Every 2nd order wins (Fast testing)
 jest.mock('@/constants', () => ({

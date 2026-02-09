@@ -1,6 +1,6 @@
-import { AppError } from '@/lib/utils/AppError';
-import { store } from '@/lib/db/store'; // Access the singleton
 import { NTH_ORDER_THRESHOLD } from '@/constants';
+import { store } from '@/lib/db/store'; // Access the singleton
+import { AppError } from '@/lib/utils/AppError';
 
 export class DiscountService {
   /**

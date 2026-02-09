@@ -1,4 +1,5 @@
 import { headers } from 'next/headers';
+
 import { AppError } from '@/lib/utils/AppError';
 
 /**
@@ -8,13 +9,13 @@ import { AppError } from '@/lib/utils/AppError';
  * @returns {string} The authenticated User ID.
  */
 export function getCurrentUserId(): string {
-    const headersList = headers();
-    const userId = headersList.get('x-user-id');
+  const headersList = headers();
+  const userId = headersList.get('x-user-id');
 
-    // Guard Clause: Authentication Barrier
-    if (!userId || userId.trim() === '') {
-        throw new AppError('Unauthorized: Missing x-user-id header', 401);
-    }
+  // Guard Clause: Authentication Barrier
+  if (!userId || userId.trim() === '') {
+    throw new AppError('Unauthorized: Missing x-user-id header', 401);
+  }
 
-    return userId;
+  return userId;
 }

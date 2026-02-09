@@ -1,10 +1,11 @@
 /**
  * @jest-environment node
  */
-import { POST } from '@/app/api/checkout/route';
-import { NextRequest } from 'next/server';
-import { store } from '@/lib/db/store';
 import { headers } from 'next/headers';
+import { NextRequest } from 'next/server';
+
+import { POST } from '@/app/api/checkout/route';
+import { store } from '@/lib/db/store';
 
 jest.mock('next/headers', () => ({
   headers: jest.fn(),

@@ -1,8 +1,10 @@
-import { AppError } from '@/lib/utils/AppError';
-import { store } from '@/lib/db/store';
-import { Cart, Order } from '@/types';
-import { discountService } from './DiscountService';
 import { randomUUID } from 'crypto';
+
+import { store } from '@/lib/db/store';
+import { AppError } from '@/lib/utils/AppError';
+import { Cart, Order } from '@/types';
+
+import { discountService } from './DiscountService';
 
 export class CartService {
   /**
