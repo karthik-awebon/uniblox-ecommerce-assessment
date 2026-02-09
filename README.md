@@ -14,6 +14,7 @@ A full-stack Next.js 14 application demonstrating a robust E-commerce backend wi
 - [🛠️ Tech Stack](#️-tech-stack)
 - [⚙️ Setup & Installation](#️-setup--installation)
 - [🧪 Running Tests](#-running-tests)
+- [🎥 Video Demo](#-video-demo)
 - [📮 Postman Collection](#-postman-collection)
 - [📖 API Documentation](#-api-documentation)
 - [📂 Project Structure](#-project-structure)
@@ -86,6 +87,11 @@ npm test
 # Run tests with coverage report
 npm run coverage
 ```
+
+## 🎥 Video Demo
+
+[Watch the 2-minute walkthrough here](https://www.loom.com/share/545ed6bebefe41e5b9aeaa11143c65d8)
+_(Since the app uses an In-Memory store, a live deployment resets data on inactivity. This video demonstrates the full persistence logic running locally.)_
 
 ## 📮 Postman Collection
 
@@ -185,3 +191,14 @@ Please refer to [`DECISIONS.md`](./DECISIONS.md) for a detailed explanation of a
 - In-Memory Store vs. Database: Trade-offs for this assessment.
 - Automated Discount Generation: Why we moved generation logic to the Checkout flow instead of a manual Admin API.
 - Service Layer Pattern: Separating concerns for testability.
+
+## ⚠️ Note on Deployment
+
+This application was designed with an **In-Memory Data Store** as per the assessment requirements.
+
+Because modern cloud platforms (Vercel, Render, AWS Lambda) are **stateless/ephemeral**, deploying this app to a standard free-tier container will result in data loss upon instance restarts or cold starts.
+
+**For accurate verification:**
+
+1.  Please run the application locally (`npm run dev`).
+2.  Or view the [Video Demo](#) linked above.
