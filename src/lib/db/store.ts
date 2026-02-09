@@ -29,10 +29,19 @@ class Store {
 
   // --- CART OPERATIONS ---
 
+  /**
+   * Retrieves a cart by its ID.
+   * @param cartId - The ID of the cart to retrieve.
+   * @returns The cart object, or undefined if not found.
+   */
   public getCart(cartId: string): Cart | undefined {
     return this.data.carts[cartId];
   }
 
+  /**
+   * Saves a cart to the store.
+   * @param cart - The cart object to save.
+   */
   public saveCart(cart: Cart): void {
     this.data.carts[cart.id] = cart;
   }
@@ -42,6 +51,8 @@ class Store {
   /**
    * Atomically creates an order and checks for discount generation.
    * This mimics a "Transaction" in a real DB.
+   * @param order - The order to create.
+   * @returns An object containing the created order and a generated discount code (if applicable).
    */
   public createOrder(order: Order): {
     order: Order;
@@ -60,16 +71,30 @@ class Store {
     return { order, generatedCode };
   }
 
+  /**
+   * Retrieves all orders from the store.
+   * @returns An array of all orders.
+   */
   public getOrders(): Order[] {
     return this.data.orders;
   }
 
   // --- DISCOUNT OPERATIONS ---
 
+  /**
+   * Retrieves a discount code by its code string.
+   * @param code - The discount code string.
+   * @returns The discount code object, or undefined if not found.
+   */
   public getDiscountCode(code: string): DiscountCode | undefined {
     return this.data.discountCodes[code];
   }
 
+  /**
+   * Creates a new discount code.
+   * @param code - The discount code string.
+   * @param percentage - The discount percentage.
+   */
   public createDiscountCode(code: string, percentage: number): void {
     this.data.discountCodes[code] = {
       code,
@@ -78,6 +103,10 @@ class Store {
     };
   }
 
+  /**
+   * Marks a discount code as used.
+   * @param code - The discount code string to mark as used.
+   */
   public markDiscountAsUsed(code: string): void {
     if (this.data.discountCodes[code]) {
       this.data.discountCodes[code].isUsed = true;
@@ -86,6 +115,7 @@ class Store {
 
   /**
    * Helper to generate a unique code and save it.
+   * @returns The generated discount code string.
    */
   private generateDiscountCode(): string {
     const code = `DISCOUNT-${Date.now()}`; // Simple unique code
@@ -99,6 +129,10 @@ class Store {
 
   // --- ADMIN / DEBUG OPERATIONS ---
 
+  /**
+   * Retrieves statistics about the store.
+   * @returns An object containing store statistics.
+   */
   public getStats() {
     return {
       totalOrders: this.data.orderCount,

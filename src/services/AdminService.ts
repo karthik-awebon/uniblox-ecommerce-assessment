@@ -6,6 +6,7 @@ export class AdminService {
    * Aggregates statistics from the in-memory store.
    * * Complexity: O(N) where N is the number of orders.
    * * In a real DB, this would be a simple SQL query (SELECT SUM(amount)...).
+   * @returns {AdminStats} - The aggregated statistics.
    */
   getStats(): AdminStats {
     const orders = store.getOrders();
