@@ -14,6 +14,7 @@ A full-stack Next.js 14 application demonstrating a robust E-commerce backend wi
 - [🛠️ Tech Stack](#️-tech-stack)
 - [⚙️ Setup & Installation](#️-setup--installation)
 - [🧪 Running Tests](#-running-tests)
+- [📮 Postman Collection](#-postman-collection)
 - [📖 API Documentation](#-api-documentation)
 - [📂 Project Structure](#-project-structure)
 - [📝 Design Decisions](#-design-decisions)
