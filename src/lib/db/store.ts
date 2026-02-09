@@ -43,7 +43,7 @@ class Store {
    * @param cart - The cart object to save.
    */
   public saveCart(cart: Cart): void {
-    this.data.carts[cart.id] = cart;
+    this.data.carts[cart.userId] = cart;
   }
 
   // --- ORDER OPERATIONS ---
@@ -157,4 +157,10 @@ class Store {
 }
 
 // Export the singleton instance
-export const store = Store.getInstance();
+const globalForStore = global as unknown as { store: Store };
+
+export const store = globalForStore.store || Store.getInstance();
+
+if (process.env.NODE_ENV !== 'production') {
+  globalForStore.store = store;
+}

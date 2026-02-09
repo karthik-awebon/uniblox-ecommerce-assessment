@@ -2,6 +2,7 @@ import { AppError } from '@/lib/utils/AppError';
 import { store } from '@/lib/db/store';
 import { Cart, Order } from '@/types';
 import { discountService } from './DiscountService';
+import { randomUUID } from 'crypto';
 
 export class CartService {
   /**
@@ -28,7 +29,7 @@ export class CartService {
 
     if (!cart) {
       cart = {
-        id: cartId,
+        id: `cart-${randomUUID()}`,
         userId,
         items: [],
       };
@@ -110,7 +111,7 @@ export class CartService {
 
     // 3. Create the Order Object
     const newOrder: Order = {
-      id: `ORDER-${Date.now()}`,
+      id: `ORDER-${randomUUID()}`,
       userId,
       items: [...cart.items],
       totalAmount,
