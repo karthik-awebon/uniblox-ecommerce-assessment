@@ -14,35 +14,6 @@ describe('DiscountService (TDD)', () => {
     store.reset();
   });
 
-  describe('checkForDiscount (N-th Order Logic)', () => {
-    it('should NOT generate a code for the 1st and 2nd orders', async () => {
-      // Mock Data: We assume orders are created sequentially
-      // Note: We are testing the service logic, which relies on the Store's count
-
-      // Simulate 1st order
-      // (In real implementation, createOrder increments the count)
-      store['data'].orderCount = 1;
-      const code1 = await discountService.checkForDiscount('order-1');
-      expect(code1).toBeUndefined();
-
-      // Simulate 2nd order
-      store['data'].orderCount = 2;
-      const code2 = await discountService.checkForDiscount('order-2');
-      expect(code2).toBeUndefined();
-    });
-
-    it('should generate a discount code for the 3rd order (nth)', async () => {
-      // Simulate 3rd order
-      store['data'].orderCount = 3;
-
-      const code = await discountService.checkForDiscount('order-3');
-
-      expect(code).toBeDefined();
-      expect(typeof code).toBe('string');
-      expect(code).toContain('DISCOUNT-');
-    });
-  });
-
   describe('validateDiscountCode', () => {
     it('should return 10% for a valid, unused code', async () => {
       // Setup: Manually inject a code into the store

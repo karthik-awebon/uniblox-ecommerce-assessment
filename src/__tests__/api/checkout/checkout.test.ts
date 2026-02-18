@@ -33,6 +33,11 @@ describe('API: POST /api/checkout', () => {
     (headers as jest.Mock).mockClear();
   });
 
+  // Clean up spies after each test to prevent leakage
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   it('should return 401 if x-user-id header is missing', async () => {
     (headers as jest.Mock).mockReturnValue(new Headers());
     const req = createRequest('POST', {});
@@ -62,7 +67,14 @@ describe('API: POST /api/checkout', () => {
       userId: 'user-123',
       items: [{ productId: 'prod-1', quantity: 1, price: 100 }],
     });
-    store.createDiscountCode('VALIDCODE', 10);
+
+    // Mock the store response directly
+    jest.spyOn(store, 'getDiscountCode').mockReturnValue({
+      code: 'VALIDCODE',
+      percentage: 10,
+      isUsed: false,
+    });
+
     const req = createRequest(
       'POST',
       { discountCode: 'VALIDCODE' },
@@ -106,8 +118,14 @@ describe('API: POST /api/checkout', () => {
       userId: 'user-123',
       items: [{ productId: 'prod-1', quantity: 1, price: 100 }],
     });
-    store.createDiscountCode('USEDCODE', 10);
-    store.markDiscountAsUsed('USEDCODE');
+
+    // Mock a used discount code directly
+    jest.spyOn(store, 'getDiscountCode').mockReturnValue({
+      code: 'USEDCODE',
+      percentage: 10,
+      isUsed: true,
+    });
+
     const req = createRequest(
       'POST',
       { discountCode: 'USEDCODE' },
@@ -145,7 +163,7 @@ describe('API: POST /api/checkout', () => {
     for (let i = 0; i < 9; i++) {
       store.createOrder({
         id: `order-${i}`,
-        userId: `user-${i}`,
+        userId: `user-`,
         items: [],
         totalAmount: 1,
         discountAmount: 0,

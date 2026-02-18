@@ -91,19 +91,6 @@ class Store {
   }
 
   /**
-   * Creates a new discount code.
-   * @param code - The discount code string.
-   * @param percentage - The discount percentage.
-   */
-  public createDiscountCode(code: string, percentage: number): void {
-    this.data.discountCodes[code] = {
-      code,
-      percentage,
-      isUsed: false,
-    };
-  }
-
-  /**
    * Marks a discount code as used.
    * @param code - The discount code string to mark as used.
    */

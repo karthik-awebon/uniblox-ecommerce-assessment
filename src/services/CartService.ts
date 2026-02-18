@@ -103,9 +103,6 @@ export class CartService {
       // This will throw an error if the code is invalid or used
       discountPercentage =
         await discountService.validateDiscountCode(discountCode);
-
-      // Mark code as used immediately so it can't be reused in a race condition
-      store.markDiscountAsUsed(discountCode);
     }
 
     const discountAmount = (totalAmount * discountPercentage) / 100;
@@ -125,6 +122,11 @@ export class CartService {
 
     // * The store handles the atomic counter increment *
     const { order: savedOrder, generatedCode } = store.createOrder(newOrder);
+
+    // Mark code as used after successful order creation to ensure atomicity
+    if (discountCode) {
+      store.markDiscountAsUsed(discountCode);
+    }
 
     // 4. Save Order
     store.saveCart({ ...cart, items: [] });
